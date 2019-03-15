@@ -13,15 +13,18 @@
   justify-content: space-evenly;
 }
 .principalContainerLogo {
+  width: 100%;
+  height: 1000px;
   background: #558833;
+  margin: 0;
 }
 
-/* @-webkit-keyframes rotate360 {
+@-webkit-keyframes rotate360 {
   0% {
     transform: translateX(0px) translateY(0px) rotateX(0) rotateY(0) rotateZ(0);
   }
   50% {
-    transform: translateX(1000px) translateY(1000px) rotateX(360deg)
+    transform: translateX(1000px) translateY(400px) rotateX(360deg)
       rotateY(360deg) rotateZ(360deg);
   }
   100% {
@@ -33,7 +36,7 @@
 .Logo {
   animation: rotate360 10s infinite linear;
   -webkit-transform-style: preserve-3d;
-} */
+}
 
 form {
   width: 30%;
@@ -87,6 +90,8 @@ th {
   padding: 6px;
   border: 3px solid #343a40;
   text-align: left;
+  width: 10em;
+  height: 5em;
 }
 
 tr:hover {

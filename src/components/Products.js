@@ -7,7 +7,8 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: []
+      products: [],
+      selected: {}
     };
   }
 
@@ -16,7 +17,7 @@ class Products extends Component {
   }
 
   fecthProducts = () => {
-    const url = "http://localhost:3001/weeds/v1/product";
+    const url = "https://weedcommerce.herokuapp.com/weeds/v1/product";
     Axios.get(url)
       .then(product => {
         this.setState({ products: product.data });
@@ -25,17 +26,39 @@ class Products extends Component {
   };
 
   subirDatos = newProduct => {
-    const url = "http://localhost:3001/weeds/v1/product";
+    const url = "https://weedcommerce.herokuapp.com/weeds/v1/product";
 
-    Axios.post(url, newProduct)
-      .then(res => {
-        this.fecthProducts();
-      })
-      .catch(err => console.log("hubo un error: ", err));
+    if (newProduct._id) {
+      // actaluzando 2am..
+      Axios.put(url + `/${newProduct._id}`, newProduct)
+        .then(res => {
+          this.fecthProducts();
+          this.setState({
+            selected: {
+              _id: null,
+              nombre: "",
+              ingredientes: "",
+              precio: "",
+              cantidad: "",
+              tiempo: "",
+              imagen: ""
+            }
+          });
+        })
+        .catch(err => {
+          console.log(`La regaste Ale :(`, err);
+        });
+    } else {
+      Axios.post(url, newProduct)
+        .then(res => {
+          this.fecthProducts();
+        })
+        .catch(err => console.log("hubo un error: ", err));
+    }
   };
 
   deleteProduct = id => {
-    const url = `http://localhost:3001/weeds/v1/product/${id}`;
+    const url = `https://weedcommerce.herokuapp.com/weeds/v1/product/${id}`;
     Axios.delete(url)
       .then(res => {
         this.fecthProducts();
@@ -43,13 +66,24 @@ class Products extends Component {
       .catch(err => console.log("hubo un error: ", err));
   };
 
+  selectProduct = product => {
+    console.log("seleccionado: ", product);
+    this.setState({
+      selected: product
+    });
+  };
+
   render() {
     return (
       <div className="principalContainer">
-        <Form onSubmit={this.subirDatos} />
+        <Form onSubmit={this.subirDatos} selected={this.state.selected} />
 
         {this.state.products && (
-          <Table products={this.state.products} onDelete={this.deleteProduct} />
+          <Table
+            products={this.state.products}
+            onDelete={this.deleteProduct}
+            onSelect={this.selectProduct}
+          />
         )}
       </div>
     );
