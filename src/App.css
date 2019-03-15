@@ -1,33 +1,95 @@
-.App {
-  text-align: center;
-}
+.principalContainer {
+  background: #558833;
+  background-image: url("Logo.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  padding: 10vw 0;
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: column;
+  justify-content: space-evenly;
+}
+.principalContainerLogo {
+  background: #558833;
+}
+
+/* @-webkit-keyframes rotate360 {
+  0% {
+    transform: translateX(0px) translateY(0px) rotateX(0) rotateY(0) rotateZ(0);
+  }
+  50% {
+    transform: translateX(1000px) translateY(1000px) rotateX(360deg)
+      rotateY(360deg) rotateZ(360deg);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotateX(720deg) rotateY(720deg)
+      rotateZ(720deg);
+  }
+}
+
+.Logo {
+  animation: rotate360 10s infinite linear;
+  -webkit-transform-style: preserve-3d;
+} */
+
+form {
+  width: 30%;
+  padding: 12px;
+  line-height: 1rem;
+  border-radius: 6px;
+  background: #343a40;
+  box-sizing: border-box;
+}
+
+.formGroup label {
+  color: peru;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.btnDefault {
+  border-radius: 5px;
+  background: peru;
+  color: #343a40;
+  margin: 1rem 0;
+}
+
+.btnDefault:hover {
+  color: peru;
+  border: 1px solid peru;
+  background: none;
+}
+input[type="file"] {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+table {
+  border-radius: 12px;
+  width: 30%;
+  border-collapse: collapse;
+}
+/* Zebra striping */
+tr {
+  background: #eee;
+  border-radius: 6px;
+}
+th {
+  background: #343a40;
+  color: peru;
+  font-weight: bold;
+}
+td,
+th {
+  border-radius: 6px;
+  padding: 6px;
+  border: 3px solid #343a40;
+  text-align: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+tr:hover {
+  background-color: #343a40ad;
+  color: #ccc;
 }
