@@ -3,14 +3,24 @@ import React, { Component } from "react";
 class Form extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      _id: null,
       nombre: "",
       ingredientes: "",
-      precio: 0,
-      cantidad: 0,
-      tiempo: 0,
+      precio: "",
+      cantidad: "",
+      tiempo: "",
       imagen: ""
     };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.selected._id !== state._id) {
+      return props.selected;
+    } else {
+      return null;
+    }
   }
 
   onInputChange = event => {
@@ -22,16 +32,32 @@ class Form extends Component {
     event.preventDefault();
 
     this.props.onSubmit(this.state);
+    this.setState({
+      _id: null,
+      nombre: "",
+      ingredientes: "",
+      precio: "",
+      cantidad: "",
+      tiempo: "",
+      imagen: ""
+    });
   };
 
   render() {
     return (
-      <form action="" onSubmit={this.handleSubmit}>
+      <form
+        autocomplete="off"
+        className="wrapper"
+        action=""
+        onSubmit={this.handleSubmit}
+      >
         <div className="formGroup">
+          <input type="hidden" value={this.state._id} />
           <label htmlFor="nombre">Nombre del producto</label>
           <input
             type="text"
             onChange={this.onInputChange}
+            value={this.state.nombre}
             className="form-control"
             id="nombre"
             placeholder="Ingresa el nombre de tu producto"
@@ -42,6 +68,7 @@ class Form extends Component {
           <input
             type="text"
             onChange={this.onInputChange}
+            value={this.state.ingredientes}
             className="form-control"
             id="ingredientes"
             placeholder="Indica los ingredientes principales"
@@ -52,6 +79,7 @@ class Form extends Component {
           <input
             type="text"
             onChange={this.onInputChange}
+            value={this.state.precio}
             className="form-control"
             id="precio"
             placeholder="Indica el precio de tu producto"
@@ -62,6 +90,7 @@ class Form extends Component {
           <input
             type="number"
             onChange={this.onInputChange}
+            value={this.state.cantidad}
             className="form-control"
             id="cantidad"
             placeholder="Indica la cantidad"
@@ -72,6 +101,7 @@ class Form extends Component {
           <input
             type="number"
             onChange={this.onInputChange}
+            value={this.state.tiempo}
             className="form-control"
             id="tiempo"
             placeholder="Indica cual es tiempo de minimo entrega."
@@ -80,8 +110,9 @@ class Form extends Component {
         <div className="formGroup">
           <label htmlFor="imagen">Selecciona la imagen de tu producto</label>
           <input
-            type="file"
+            type="text"
             onChange={this.onInputChange}
+            value={this.state.imagen}
             className="form-control-file"
             id="imagen"
           />

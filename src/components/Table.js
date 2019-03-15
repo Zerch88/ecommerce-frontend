@@ -21,7 +21,7 @@ class Table extends Component {
             <th scope="col">Precio</th>
             <th scope="col">Cantidad del producto</th>
             <th scope="col">Tiempo de entrega</th>
-            {/* <th scope="col">Imagen</th> */}
+            <th scope="col">Imagen</th>
             <th scope="col">
               <img src={Icon1} width="40" alt="eliminar" />
             </th>
@@ -39,15 +39,15 @@ class Table extends Component {
               <td>{product.precio}</td>
               <td>{product.cantidad}</td>
               <td>{product.tiempo}</td>
-              {/* <td>{product.imagen}</td> */}
+              <td>{product.imagen}</td>
               <td
                 onClick={() => {
                   this.props.onDelete(product._id);
                 }}
               >
-                <img src={Delete} width="40" alt="actualizar" />
+                <img src={Delete} width="40" alt="eliminar" />
               </td>
-              <td>
+              <td onClick={() => this.props.onSelect(product)}>
                 <img src={Edit} width="40" alt="actualizar" />
               </td>
             </tr>
